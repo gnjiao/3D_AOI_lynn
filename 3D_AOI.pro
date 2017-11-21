@@ -9,5 +9,5 @@ SOURCES += main.cpp \
 
 HEADERS += \
     rectangle.h \
-    measuredobj.h \
-    customexception.h
+    customexception.h \
+    measuredobj.hpp

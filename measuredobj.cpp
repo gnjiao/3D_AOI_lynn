@@ -1,21 +1,21 @@
-#include "measuredobj.h"
+#include "measuredobj.hpp"
 
 
 Job::MeasuredObj::MeasuredObj()
 {
-    this->pNextMeasuredObj = nullptr;
-    this->pPreMeasuredObj = nullptr;
+    this->m_pNextMeasuredObj = nullptr;
+    this->m_pPreMeasuredObj = nullptr;
 }
 
 Job::MeasuredObj::MeasuredObj(Job::MeasuredObj *preMeasureObj,
                               Job::MeasuredObj *nextMeasureObj)
 {
-    this->pNextMeasuredObj = nextMeasureObj;
-    this->pPreMeasuredObj = preMeasureObj;
+    this->m_pNextMeasuredObj = nextMeasureObj;
+    this->m_pPreMeasuredObj = preMeasureObj;
 }
 
 Job::MeasuredObj::~MeasuredObj()
 {
-    this->pNextMeasuredObj = nullptr;
-    this->pPreMeasuredObj = nullptr;
+    this->m_pNextMeasuredObj = nullptr;
+    this->m_pPreMeasuredObj = nullptr;
 }
