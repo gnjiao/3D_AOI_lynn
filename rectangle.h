@@ -13,8 +13,15 @@ namespace SDK {
     class Rectangle
     {
     public:
-
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //1.访存函数
+        double& setXPos() { return this->m_xPos; }
+        double& setYPos() { return this->m_yPos; }
+        double& setWidth() { return this->m_width; }
+        double& setHeight() { return this->m_height; }
     private:
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //2.成员变量
         double m_xPos;         //矩形在x坐标上的位置
         double m_yPos;         //矩形在y坐标上的位置
         double m_width;        //矩形的宽度
