@@ -1,4 +1,3 @@
-
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
@@ -16,7 +15,7 @@ namespace SDK {
     public:
         Rectangle();
 
-    protected:
+    private:
         double m_xPos;         //矩形在x坐标上的位置
         double m_yPos;         //矩形在y坐标上的位置
         double m_width;        //矩形的宽度

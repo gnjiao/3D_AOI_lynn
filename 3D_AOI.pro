@@ -3,7 +3,11 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    measuredobj.cpp \
+    customexception.cpp
 
 HEADERS += \
-    rectangle.h
+    rectangle.h \
+    measuredobj.h \
+    customexception.h
