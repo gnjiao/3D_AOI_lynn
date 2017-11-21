@@ -2,7 +2,7 @@
 
 #include "customexception.h"
 #include "rectangle.h"
-#include "measuredobj.h"
+#include "measuredobj.hpp"
 
 using namespace std;
 

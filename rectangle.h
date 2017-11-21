@@ -4,16 +4,15 @@
 namespace SDK {
 
 
-/**
- *  @brief  仅表示矩形框，只有一般矩形框的基本属性
- *  @author lynn
- *  @version 1.00 2017-11-20 lynn
- *                note:create it
- */
+    /**
+     *  @brief  仅表示矩形框，只有一般矩形框的基本属性
+     *  @author lynn
+     *  @version 1.00 2017-11-20 lynn
+     *                note:create it
+     */
     class Rectangle
     {
     public:
-        Rectangle();
 
     private:
         double m_xPos;         //矩形在x坐标上的位置

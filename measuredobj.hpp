@@ -1,7 +1,7 @@
 #ifndef MEASUREDOBJ_H
 #define MEASUREDOBJ_H
 
-#include<string>
+#include <string>
 
 #include "rectangle.h"
 
@@ -20,7 +20,7 @@ namespace Job {
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.constructor & destructor
         /*
-        *  @brief   只初始化两个成员变量指针为空指针
+        *  @brief   只是初始化两个成员变量指针为空指针
         *  @param   N/A
         *  @return  N/A
         */
@@ -35,15 +35,20 @@ namespace Job {
         MeasuredObj(Job::MeasuredObj* preMeasureObj,
                     Job::MeasuredObj* nextMeasureObj);
 
-        //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //2.访存函数
         ~MeasuredObj();
 
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //2.访存函数
+        std::string& setName() { return this->m_name; }
+        SDK::Rectangle& setBody() { return this->m_body; }
+        Job::MeasuredObj*& setPreMeasureObj() {return this->m_pPreMeasuredObj;}
+        Job::MeasuredObj*& setNextMeasuredObj(){return this->m_pNextMeasuredObj;}
+
     private:
-        std::string name;
-        SDK::Rectangle body;
-        Job::MeasuredObj* pPreMeasuredObj;
-        Job::MeasuredObj* pNextMeasuredObj;
+        std::string m_name;
+        SDK::Rectangle m_body;
+        Job::MeasuredObj* m_pPreMeasuredObj;
+        Job::MeasuredObj* m_pNextMeasuredObj;
     };
 
 }
