@@ -1,3 +1,10 @@
+/**
+ *  @brief  自定义异常，传入错误信息，返回格式化的全套异常信息
+ *  @author lynn
+ *  @version 1.00 2017-11-21 lynn
+ *                note:create it
+ */
+
 #ifndef CUSTOMEXCEPTION_H
 #define CUSTOMEXCEPTION_H
 
