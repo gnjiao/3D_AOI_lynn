@@ -20,7 +20,7 @@ Job::MeasuredObj::~MeasuredObj()
     this->m_pPreMeasuredObj = nullptr;
 }
 
-void Job::MeasuredObj::randomMeasuredObj()
+void Job::MeasuredObj::randomRectangle()
 {
     //随机生成rectangle的数据的上下限
     double maxHeight = 150.00;
