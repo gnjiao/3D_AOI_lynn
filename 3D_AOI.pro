@@ -5,9 +5,11 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     measuredobj.cpp \
-    customexception.cpp
+    customexception.cpp \
+    measuredobjlist.cpp
 
 HEADERS += \
     rectangle.h \
     customexception.h \
-    measuredobj.hpp
+    measuredobj.hpp \
+    measuredobjlist.hpp
