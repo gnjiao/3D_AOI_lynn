@@ -52,7 +52,8 @@ void MeasuredObjList::pushHead(MeasuredObj newMeasuredObj)      //TBC:优化meas
     }
 
     //将原来的首个元素的前一个元素指针指向新元素
-    (*pOldHead).setPPreMeasureObj(this->m_pHeadMeasuredObj);
+    if( nullptr != pOldHead)
+        (*pOldHead).setPPreMeasureObj(this->m_pHeadMeasuredObj);   //wrong
 
     //将新元素的后一个元素指针指向原来的首个元素
     (*this->m_pHeadMeasuredObj).setPNextMeasuredObj(pOldHead);
@@ -61,7 +62,7 @@ void MeasuredObjList::pushHead(MeasuredObj newMeasuredObj)      //TBC:优化meas
     (*this->m_pHeadMeasuredObj).setPPreMeasureObj(nullptr);
 }
 
-void MeasuredObjList::pushTail(MeasuredObj newMeasuredObj)
+void MeasuredObjList::pushTail(MeasuredObj newMeasuredObj)          //TBC:bug!链表为空pushTail出错
 {
     this->m_size++;                                     //元素个数加一
     //获取原链表最后一个元素的指针

@@ -10,7 +10,7 @@
 /*
 *  @brief   生成一个精度为0.01的随机数
 *  @param   lowerLimit为随机数的下限
-*           upperLimit为随机数的上限
+*           upperLimit为随机数的上限               //TBC:把这个函数放到合理的地方
 *  @return  指定范围内的有效精度为0.01的随机数
 */
 #define RANDOM_NUM(lowerLimit,upperLimit)\
@@ -54,7 +54,7 @@ namespace Job {
         void setName(std::string name) { this->m_name = name; }
 
         SDK::Rectangle getBody() { return this->m_body; }
-        void setBody(SDK::Rectangle body) { this->m_body = body; }
+        void setBody(SDK::Rectangle body) { this->m_body = body; }          //TBC 将参数body写成引用(const&)
 
         Job::MeasuredObj* getPPreMeasureObj() {return this->m_pPreMeasuredObj;}
         void setPPreMeasureObj(Job::MeasuredObj *pPreMeasuredObj)
@@ -70,7 +70,7 @@ namespace Job {
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //3.成员函数
-        void randomMeasuredObj();
+        void randomRectangle();
     private:
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
