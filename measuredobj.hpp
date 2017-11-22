@@ -2,8 +2,19 @@
 #define MEASUREDOBJ_H
 
 #include <string>
+#include <iostream>
+#include <random>
 
 #include "rectangle.h"
+
+/*
+*  @brief   生成一个精度为0.01的随机数
+*  @param   lowerLimit为随机数的下限
+*           upperLimit为随机数的上限
+*  @return  指定范围内的有效精度为0.01的随机数
+*/
+#define RANDOM_NUM(lowerLimit,upperLimit)\
+((rand()%(int)((upperLimit - lowerLimit)*100)+lowerLimit)/100)
 
 namespace Job {
 
@@ -32,25 +43,44 @@ namespace Job {
         *           nextMeasureObj是指向后一个元件的指针
         *  @return  N/A
         */
-        MeasuredObj(Job::MeasuredObj* preMeasureObj,
-                    Job::MeasuredObj* nextMeasureObj);
+        MeasuredObj(Job::MeasuredObj* pPreMeasureObj,
+                    Job::MeasuredObj* pNextMeasureObj);
 
         ~MeasuredObj();
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //2.访存函数
-        std::string& setName() { return this->m_name; }
-        SDK::Rectangle& setBody() { return this->m_body; }
-        Job::MeasuredObj*& setPreMeasureObj() {return this->m_pPreMeasuredObj;}
-        Job::MeasuredObj*& setNextMeasuredObj(){return this->m_pNextMeasuredObj;}
+        std::string getName() { return this->m_name; }
+        void setName(std::string name) { this->m_name = name; }
 
+        SDK::Rectangle getBody() { return this->m_body; }
+        void setBody(SDK::Rectangle body) { this->m_body = body; }
+
+        Job::MeasuredObj* getPPreMeasureObj() {return this->m_pPreMeasuredObj;}
+        void setPPreMeasureObj(Job::MeasuredObj *pPreMeasuredObj)
+        {
+            this->m_pPreMeasuredObj = pPreMeasuredObj;
+        }
+
+        Job::MeasuredObj* getPNextMeasuredObj(){return this->m_pNextMeasuredObj;}
+        void setPNextMeasuredObj(Job::MeasuredObj *pNextMeasuredObj)
+        {
+            this->m_pNextMeasuredObj = pNextMeasuredObj;
+        }
+
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //3.成员函数
+        void randomMeasuredObj();
     private:
+
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //4.成员变量
         std::string m_name;
         SDK::Rectangle m_body;
         Job::MeasuredObj* m_pPreMeasuredObj;
         Job::MeasuredObj* m_pNextMeasuredObj;
     };
 
-}
+}//End of namespace Job
 
 #endif // MEASUREDOBJ_H

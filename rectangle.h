@@ -15,10 +15,18 @@ namespace SDK {
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.访存函数
-        double& setXPos() { return this->m_xPos; }
-        double& setYPos() { return this->m_yPos; }
-        double& setWidth() { return this->m_width; }
-        double& setHeight() { return this->m_height; }
+        double getXPos() { return this->m_xPos; }
+        void setXPos(double xPos) { this->m_xPos = xPos; }
+
+        double getYPos() { return this->m_yPos; }
+        void setYPos(double yPos) { this->m_yPos = yPos; }
+
+        double getWidth() { return this->m_width; }
+        void setWidth(double width) { this->m_width = width; }
+
+        double getHeight() { return this->m_height; }
+        void setHeight(double height) { this->m_height = height; }
+
     private:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //2.成员变量
