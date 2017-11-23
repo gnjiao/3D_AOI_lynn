@@ -9,11 +9,13 @@ SOURCES += main.cpp \
     measuredobj.cpp \
     customexception.cpp \
     measuredobjlist.cpp \
-    board.cpp
+    board.cpp \
+    inspectiondata.cpp
 
 HEADERS += \
     rectangle.h \
     customexception.h \
     measuredobj.hpp \
     measuredobjlist.hpp \
-    board.h
+    board.h \
+    inspectiondata.h

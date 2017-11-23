@@ -5,6 +5,7 @@
 #include"measuredobjlist.hpp"
 #include"rectangle.h"
 #include"board.h"
+#include"inspectiondata.h"
 
 using namespace std;
 
