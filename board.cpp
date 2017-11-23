@@ -47,8 +47,7 @@ namespace Job
 
         QXmlStreamWriter xmlWriter(&file);
         xmlWriter.setAutoFormatting(true);
-        xmlWriter.writeStartDocument();
-        xmlWriter.writeStartElement("元件名");
+        xmlWriter.writeStartElement("元件信息");
 
         Job::MeasuredObj *pWritingObj = (this->m_measuredObjs).getHeadMeasuredObj();
         for ( int i = 1; i <= (this->m_measuredObjs).getSize(); ++i)
@@ -69,7 +68,6 @@ namespace Job
         }
 
         xmlWriter.writeEndElement();
-        xmlWriter.writeEndDocument();
         file.close();
     }
 
