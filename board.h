@@ -1,6 +1,11 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <QFile>
+#include <QDoubleValidator>
+#include <QDomDocument>
+#include <QXmlStreamWriter>
+
 #include"measuredobjlist.hpp"
 
 namespace Job
@@ -39,6 +44,7 @@ namespace Job
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //3.成员函数
         void randomMeasuredObjs();
+        void writeToXml(std::string path);
 
     private:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
