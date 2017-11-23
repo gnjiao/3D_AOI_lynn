@@ -36,4 +36,41 @@ namespace Job
         }
     }
 
+    void Board::writeToXml(std::string path)
+    {
+        QFile file(QString::fromStdString(path));
+        if(!file.open(QIODevice::WriteOnly|QIODevice::Append))  //打开传入路径文件
+        {
+            std::cout << "XML文件打开不成功！！！" << std::endl;
+            return;
+        }
+
+        QXmlStreamWriter xmlWriter(&file);
+        xmlWriter.setAutoFormatting(true);
+        xmlWriter.writeStartDocument();
+        xmlWriter.writeStartElement("元件名");
+
+        Job::MeasuredObj *pWritingObj = (this->m_measuredObjs).getHeadMeasuredObj();
+        for ( int i = 1; i <= (this->m_measuredObjs).getSize(); ++i)
+        {
+            //存入元件名
+            xmlWriter.writeTextElement("元件"+QString::number(i),QString::fromStdString((*pWritingObj).getName()));
+
+            //存入元件的相关数据
+            xmlWriter.writeStartElement("属性");
+            xmlWriter.writeTextElement("高度",QString::number(((*pWritingObj).getBody()).getHeight()) );
+            xmlWriter.writeTextElement("宽度",QString::number(((*pWritingObj).getBody()).getWidth()) );
+            xmlWriter.writeTextElement("x坐标",QString::number(((*pWritingObj).getBody()).getXPos()) );
+            xmlWriter.writeTextElement("y坐标",QString::number(((*pWritingObj).getBody()).getYPos()) );
+            xmlWriter.writeEndElement();
+
+            //将待写入的元素指针改为指向链表的下一个元素
+            pWritingObj = (*pWritingObj).getPNextMeasuredObj();
+        }
+
+        xmlWriter.writeEndElement();
+        xmlWriter.writeEndDocument();
+        file.close();
+    }
+
 }//End of namespace Job

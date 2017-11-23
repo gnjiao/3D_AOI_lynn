@@ -18,6 +18,7 @@ namespace Job
         //2.访存函数
         int getSize() { return this->m_size; }
         MeasuredObj * getHeadMeasuredObj() { return this->m_pHeadMeasuredObj; }
+
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //3.成员函数
         void pushHead(MeasuredObj newMeasuredObj);
