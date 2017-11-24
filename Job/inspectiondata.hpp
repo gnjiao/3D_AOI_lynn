@@ -6,7 +6,7 @@
 #include <QDomDocument>
 #include <QXmlStreamWriter>
 
-#include"board.h"
+#include"board.hpp"
 
 namespace Job
 {

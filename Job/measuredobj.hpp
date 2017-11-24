@@ -5,7 +5,7 @@
 #include <iostream>
 #include <random>
 
-#include "rectangle.h"
+#include "./SDK/rectangle.hpp"
 
 /*
 *  @brief   生成一个精度为0.01的随机数

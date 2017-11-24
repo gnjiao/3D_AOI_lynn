@@ -1,4 +1,4 @@
-#include "board.h"
+#include "board.hpp"
 
 namespace Job
 {
@@ -47,6 +47,16 @@ namespace Job
 
         QXmlStreamWriter xmlWriter(&file);
         xmlWriter.setAutoFormatting(true);
+
+        //写入基板信息
+        xmlWriter.writeStartElement("基板信息");
+        xmlWriter.writeTextElement("板名",QString::fromStdString(this->m_name) );
+        xmlWriter.writeTextElement("板宽",QString::number(this->m_sizeX));
+        xmlWriter.writeTextElement("板长",QString::number(this->m_sizeY));
+        xmlWriter.writeTextElement("x原点",QString::number(this->m_originalX));
+        xmlWriter.writeTextElement("y原点",QString::number(this->m_originalY));
+        xmlWriter.writeEndElement();
+
         xmlWriter.writeStartElement("元件信息");
 
         Job::MeasuredObj *pWritingObj = (this->m_measuredObjs).getHeadMeasuredObj();
