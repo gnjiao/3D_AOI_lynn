@@ -21,7 +21,7 @@
             << "Func:"<<__FUNCTION__<<"\n"\
             << "Detail:"<<exMsg<<"\n";\
     std::string msg = message.str();\
-    throw CustomException(msg);\
+    throw SDK::CustomException(msg);\
 }
 
 
