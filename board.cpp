@@ -54,7 +54,7 @@ namespace Job
         {
             //存入元件名
             xmlWriter.writeTextElement("元件"+QString::number(i),QString::fromStdString((*pWritingObj).getName()));
-
+                            //TBC:board的信息漏了，补上
             //存入元件的相关数据
             xmlWriter.writeStartElement("属性");
             xmlWriter.writeTextElement("高度",QString::number(((*pWritingObj).getBody()).getHeight()) );

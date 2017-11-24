@@ -1,0 +1,7 @@
+[General]
+CompanyName=SCIJET
+JobFolderPath=./Inspection/
+LaneMode=Simulator
+Lang=CN
+MachineType=SPI
+Theme=Black
