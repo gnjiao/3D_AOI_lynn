@@ -5,6 +5,13 @@
 
 namespace Job
 {
+    /**
+     *  @brief
+     *
+     *  @author lynn
+     *  @version 1.00 2017-11-24 lynn
+     *                note:create it
+     */
     class MeasuredObjList
     {
     public:
