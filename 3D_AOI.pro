@@ -10,7 +10,8 @@ SOURCES += main.cpp \
     customexception.cpp \
     measuredobjlist.cpp \
     board.cpp \
-    inspectiondata.cpp
+    inspectiondata.cpp \
+    appsetting.cpp
 
 HEADERS += \
     rectangle.h \
@@ -18,4 +19,5 @@ HEADERS += \
     measuredobj.hpp \
     measuredobjlist.hpp \
     board.h \
-    inspectiondata.h
+    inspectiondata.h \
+    appsetting.h

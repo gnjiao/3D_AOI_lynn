@@ -1,7 +1,7 @@
 #include "measuredobj.hpp"
 
 
-Job::MeasuredObj::MeasuredObj()
+Job::MeasuredObj::MeasuredObj()                 //TBC:用列表初始化的方式初始化类中的类对象
 {
     this->m_pNextMeasuredObj = nullptr;
     this->m_pPreMeasuredObj = nullptr;
