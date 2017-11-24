@@ -1,4 +1,4 @@
-#include "inspectiondata.h"
+#include "inspectiondata.hpp"
 
 void Job::InspectionData::writeToXml(std::string path)
 {

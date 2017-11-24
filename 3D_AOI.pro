@@ -6,20 +6,20 @@ QT += xml
 QT += core
 
 SOURCES += main.cpp \
-    measuredobj.cpp \
-    customexception.cpp \
-    measuredobjlist.cpp \
-    board.cpp \
-    inspectiondata.cpp \
-    appsetting.cpp \
-    capturesetting.cpp
+    App/appsetting.cpp \
+    App/capturesetting.cpp \
+    Job/board.cpp \
+    Job/inspectiondata.cpp \
+    Job/measuredobj.cpp \
+    Job/measuredobjlist.cpp \
+    SDK/customexception.cpp
 
 HEADERS += \
-    rectangle.h \
-    customexception.h \
-    measuredobj.hpp \
-    measuredobjlist.hpp \
-    board.h \
-    inspectiondata.h \
-    appsetting.h \
-    capturesetting.h
+    App/appsetting.hpp \
+    App/capturesetting.hpp \
+    Job/board.hpp \
+    Job/inspectiondata.hpp \
+    Job/measuredobj.hpp \
+    Job/measuredobjlist.hpp \
+    SDK/customexception.hpp \
+    SDK/rectangle.hpp
