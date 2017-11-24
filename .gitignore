@@ -1,6 +1,8 @@
 #custom
 debug/
 3D_AOI.pro.user
+*.xml
+*.init
 
 # Prerequisites
 *.d
