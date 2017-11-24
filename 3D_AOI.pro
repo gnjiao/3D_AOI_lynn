@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     measuredobjlist.cpp \
     board.cpp \
     inspectiondata.cpp \
-    appsetting.cpp
+    appsetting.cpp \
+    capturesetting.cpp
 
 HEADERS += \
     rectangle.h \
@@ -20,4 +21,5 @@ HEADERS += \
     measuredobjlist.hpp \
     board.h \
     inspectiondata.h \
-    appsetting.h
+    appsetting.h \
+    capturesetting.h

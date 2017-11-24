@@ -35,7 +35,7 @@ namespace Job
         std::string getName() { return this->m_name; }
         void setName(std::string name) { this->m_name = name; }
 
-        Job::MeasuredObjList getMeasuredObjs(){ return this->m_measuredObjs; }
+        Job::MeasuredObjList & getMeasuredObjs(){ return this->m_measuredObjs; }
         void setMeasuredObjs(Job::MeasuredObjList measuredObjs)         //TBC:将这里的参数改为引用
         {
             this->m_measuredObjs = measuredObjs;
