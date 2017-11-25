@@ -27,6 +27,13 @@
 
 namespace SDK
 {
+    /**
+     *  @brief 自定义异常类
+     *
+     *  @author lynn
+     *  @version 1.00 2017-11-25 lynn
+     *                note:create it
+     */
     class CustomException : public std::exception
     {
     public:
