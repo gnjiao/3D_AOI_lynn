@@ -5,6 +5,7 @@
 #include <QDoubleValidator>
 #include <QDomDocument>
 #include <QXmlStreamWriter>
+#include <QTextStream>
 
 #include"measuredobjlist.hpp"
 

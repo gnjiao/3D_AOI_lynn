@@ -5,7 +5,7 @@
 #include <QDoubleValidator>
 #include <QDomDocument>
 #include <QXmlStreamWriter>
-
+#include <QTextStream>
 #include"board.hpp"
 
 namespace Job
