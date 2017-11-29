@@ -15,16 +15,16 @@ namespace SDK {
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.访存函数
-        double getXPos() { return this->m_xPos; }
+        double xPos() { return this->m_xPos; }
         void setXPos(double xPos) { this->m_xPos = xPos; }
 
-        double getYPos() { return this->m_yPos; }
+        double yPos() { return this->m_yPos; }
         void setYPos(double yPos) { this->m_yPos = yPos; }
 
-        double getWidth() { return this->m_width; }
+        double width() { return this->m_width; }
         void setWidth(double width) { this->m_width = width; }
 
-        double getHeight() { return this->m_height; }
+        double height() { return this->m_height; }
         void setHeight(double height) { this->m_height = height; }
 
     private:

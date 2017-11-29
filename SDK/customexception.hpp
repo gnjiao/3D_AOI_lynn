@@ -13,12 +13,19 @@
 #include <sstream>
 #include <iostream>
 
+
+/*
+*  @brief   追加异常信息并抛出异常
+*  @param   原来的异常信息
+*  @return  N/A
+*/
 #define THROW_EXCEPTION(exMsg)\
 {\
     std::ostringstream message;\
     message << "File:"<<__FILE__<<"\n"\
             << "Line:"<<__LINE__<<"\n"\
             << "Func:"<<__FUNCTION__<<"\n"\
+            << " " << "\n"\
             << "Detail:"<<exMsg<<"\n";\
     std::string msg = message.str();\
     throw SDK::CustomException(msg);\
@@ -39,10 +46,22 @@ namespace SDK
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.constructor & destructor
+
+        /*
+        *  @brief   将作为参数的异常信息存到成员变量
+        *  @param   N/A
+        *  @return  异常信息
+        */
         CustomException(std::string & message);
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //2.访存函数
+        //2.set & get function
+
+        /*
+        *  @brief   获取异常信息
+        *  @param   N/A
+        *  @return  返回存储的异常信息
+        */
         virtual const char * what() const _GLIBCXX_USE_NOEXCEPT override
         {
             return m_originalMsg.data();
@@ -50,7 +69,7 @@ namespace SDK
 
     private :
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //3.成员变量
+        //3.member function
         std::string m_originalMsg;          //异常信息
     };
 

@@ -6,15 +6,7 @@
 #include <random>
 
 #include "./SDK/rectangle.hpp"
-
-/*
-*  @brief   生成一个精度为0.01的随机数
-*  @param   lowerLimit为随机数的下限
-*           upperLimit为随机数的上限               //TBC:把这个函数放到合理的地方
-*  @return  指定范围内的有效精度为0.01的随机数
-*/
-#define RANDOM_NUM(lowerLimit,upperLimit)\
-((rand()%(int)((upperLimit - lowerLimit)*100)+lowerLimit)/100)
+#include "./SDK/datahelper.hpp"
 
 namespace Job {
 
@@ -29,56 +21,71 @@ namespace Job {
     {
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //1.constructor & destructor
+        //1.set & get function
+
         /*
-        *  @brief   只是初始化两个成员变量指针为空指针
+        *  @brief   获取元件名称
         *  @param   N/A
-        *  @return  N/A
+        *  @return  元件名陈
         */
-        MeasuredObj();
+        std::string name() { return this->m_name; }
 
         /*
-        *  @brief   指定前一个和后一个元件
-        *  @param   preMeasureObj是指向前一个元件的指针
-        *           nextMeasureObj是指向后一个元件的指针
+        *  @brief   设置元件名陈
+        *  @param   要设置的元件名称
         *  @return  N/A
         */
-        MeasuredObj(Job::MeasuredObj* pPreMeasureObj,
-                    Job::MeasuredObj* pNextMeasureObj);
-
-        ~MeasuredObj();
-
-        //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //2.访存函数
-        std::string getName() { return this->m_name; }
         void setName(std::string name) { this->m_name = name; }
 
-        SDK::Rectangle getBody() { return this->m_body; }
-        void setBody(SDK::Rectangle body) { this->m_body = body; }          //TBC 将参数body写成引用(const&)
+        /*
+        *  @brief   获取元件的基本信息
+        *  @param   N/A
+        *  @return  元件的基本信息
+        */
+        SDK::Rectangle& body() { return this->m_body; }
 
-        Job::MeasuredObj* getPPreMeasureObj() {return this->m_pPreMeasuredObj;}
+        /*
+        *  @brief   获取上一个元件的指针
+        *  @param   N/A
+        *  @return  上一个元件的指针
+        */
+        Job::MeasuredObj* pPreMeasureObj() {return this->m_pPreMeasuredObj;}
+
+        /*
+        *  @brief   设置上一个元件的指针
+        *  @param   要设置的上一个元件的指针
+        *  @return  N/A
+        */
         void setPPreMeasureObj(Job::MeasuredObj *pPreMeasuredObj)
         {
             this->m_pPreMeasuredObj = pPreMeasuredObj;
         }
 
-        Job::MeasuredObj* getPNextMeasuredObj(){return this->m_pNextMeasuredObj;}
+        /*
+        *  @brief   获取下一个元件的指针
+        *  @param   N/A
+        *  @return  下一个元件的指针
+        */
+        Job::MeasuredObj* pNextMeasuredObj(){return this->m_pNextMeasuredObj;}
+
+        /*
+        *  @brief   设置下一个元件的指针
+        *  @param   要设置的下一个元件的指针
+        *  @return  N/A
+        */
         void setPNextMeasuredObj(Job::MeasuredObj *pNextMeasuredObj)
         {
             this->m_pNextMeasuredObj = pNextMeasuredObj;
         }
 
-        //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //3.成员函数
-        void randomRectangle();
     private:
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //4.成员变量
+        //2.member variant
         std::string m_name;
         SDK::Rectangle m_body;
-        Job::MeasuredObj* m_pPreMeasuredObj;
-        Job::MeasuredObj* m_pNextMeasuredObj;
+        Job::MeasuredObj* m_pPreMeasuredObj{nullptr};
+        Job::MeasuredObj* m_pNextMeasuredObj{nullptr};
     };
 
 }//End of namespace Job

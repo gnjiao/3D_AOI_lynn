@@ -8,33 +8,48 @@
 
 namespace App
 {
-    enum class Theme { Black , White };
-    enum class Lang { CN , EN };
-    enum class LaneMode { Simulator , SingleLane , DualLane };
-    enum class MachineType { SPI , AOI3D };
+    enum class THEME { BLACK , WHITE };
+    enum class LANG { CN , EN };
+    enum class LANEMODE { SIMULATOR , SINGLE_LANE , DUAL_LANE };
+    enum class MACHINETYPE { SPI , AOI3D };
 
+    /**
+     *  @brief  app配置文件类，1.若配置文件正常，读配置文件并且将配置文件中的信息存到成员变量中
+     *                       2.若配置文件不正常，将相应的成员变量设置为默认值
+     *  @author lynn
+     *  @version 1.00 2017-11-29 lynn
+     *                note:create it
+     */
     class AppSetting
     {
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //1.constructor & destructor
+        //1.set & get function
 
+        /*
+        *  @brief   返回默认的程式存放路径
+        *  @param   N/A
+        *  @return  默认的程式存放路径
+        */
+        std::string jobFolderPath() { return this->m_jobFolderPath; }
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //2.访存函数
+        //2.member function
 
-
-        //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //3.成员函数
+        /*
+        *  @brief   加载app配置文件
+        *  @param   app配置文件的路径
+        *  @return  N/A
+        */
         void load(const QString& path);
 
     private:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //4.成员变量
-        Theme m_theme;
-        Lang m_lang;
-        LaneMode m_laneMode;
-        MachineType m_machineType;
+        //3.member variant
+        THEME m_theme;
+        LANG m_lang;
+        LANEMODE m_laneMode;
+        MACHINETYPE m_machineType;
         std::string m_companyName;
         std::string m_jobFolderPath;
     };

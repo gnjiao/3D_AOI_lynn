@@ -8,24 +8,16 @@
 #include"./Job/inspectiondata.hpp"
 #include"./App/appsetting.hpp"
 #include"./App/capturesetting.hpp"
+#include"./App/app.h"
 
 using namespace std;
 
 int main()
 {
-    QString path = "./aaaaaa.init";
-    App::AppSetting lynn;
-    lynn.load(path);
-
-    Job::InspectionData lala;
-    lala.getBoard().randomMeasuredObjs();
-    lala.getBoard().getMeasuredObjs().print();
-    lala.writeToXml("aaabbb.xml");
-
-
-//    App::CaptureSetting lynn;
-//    lynn.load("./aa");
-    return 0;
+   App::MainWindow lynn;
+   lynn.loadAppSetting("./init/aaaa");
+   lynn.loadJobFolder();
+   lynn.inspectionData().board().measuredObjs().print();
 }
 
 
