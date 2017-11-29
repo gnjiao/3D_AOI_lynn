@@ -1,14 +1,14 @@
 #include <iostream>
 
 #include "./SDK/customexception.hpp"
-#include"./Job/measuredobj.hpp"
-#include"./Job/measuredobjlist.hpp"
-#include"./SDK/rectangle.hpp"
-#include"./Job/board.hpp"
-#include"./Job/inspectiondata.hpp"
-#include"./App/appsetting.hpp"
-#include"./App/capturesetting.hpp"
-#include"./App/app.h"
+#include "./Job/measuredobj.hpp"
+#include "./Job/measuredobjlist.hpp"
+#include "./SDK/rectangle.hpp"
+#include "./Job/board.hpp"
+#include "./Job/inspectiondata.hpp"
+#include "./App/appsetting.hpp"
+#include "./App/capturesetting.hpp"
+#include "./App/mainwindow.hpp"
 
 using namespace std;
 

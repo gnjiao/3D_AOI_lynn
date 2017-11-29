@@ -1,6 +1,14 @@
 #include "appsetting.hpp"
 
+App::AppSetting::AppSetting()
+{
 
+}
+
+App::AppSetting::~AppSetting()
+{
+
+}
 
 void App::AppSetting::load(const QString &path)
 {
@@ -39,7 +47,7 @@ void App::AppSetting::load(const QString &path)
     }
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //2.若有配置文件
-    else                            //若有配置文件
+    else    //若有配置文件
     {
         //2.1.读取Theme, 如果不正确的话就写入默认值
         QString theme =  configFile.value("Theme").toString();

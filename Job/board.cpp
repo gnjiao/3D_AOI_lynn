@@ -2,9 +2,20 @@
 
 using namespace Job;
 
+Board::Board()
+{
+
+}
+
+Board::~Board()
+{
+
+}
+
 void Board::writeToXml(std::string path)
 {
-    //创建传入路径指定的xml文件
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //1.创建传入路径指定的xml文件
     QFile file(QString::fromStdString(path));
     if(!file.open(QFile::ReadOnly))
     {
@@ -12,6 +23,8 @@ void Board::writeToXml(std::string path)
         return;
     }
 
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //2.解析原来的xml文件加入到doc中
     QDomDocument doc;
     if(!doc.setContent(&file))
     {
@@ -20,6 +33,8 @@ void Board::writeToXml(std::string path)
     }
     file.close();
 
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //3.创建一级子节点board并存入数据
     QDomElement root = doc.documentElement();           //创建根节点
 
     //创建next子节点board:
@@ -32,6 +47,8 @@ void Board::writeToXml(std::string path)
     //获取链表首个元素地址
     Job::MeasuredObj *pWritingObj = (this->m_measuredObjs).pHeadMeasuredObj();
 
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //4.创建board的子节点object,并存入数据
     QDomElement object;        //board的子节点object
 
     //存入所有原件的数据
@@ -50,12 +67,12 @@ void Board::writeToXml(std::string path)
         pWritingObj = (*pWritingObj).pNextMeasuredObj();
     }
 
-    //添加board到根节点
-    root.appendChild(board);
+    root.appendChild(board);                            //添加board到根节点
 
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //5.输出到文件
     if(!file.open(QFile::WriteOnly|QFile::Truncate))    //若打开文件失败
         return;
-    //输出到文件
     QTextStream out_stream(&file);
     doc.save(out_stream,4);                             //以缩进4格方式输出
     file.close();

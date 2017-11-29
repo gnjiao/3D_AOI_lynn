@@ -1,24 +1,8 @@
 #ifndef APP_H
 #define APP_H
 
-
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <vector>
 #include <time.h>
-
 #include <QDir>
-#include <QCoreApplication>
-#include <QSql>
-#include <QSqlDatabase>
-#include <QSqlError>
-#include <QSqlQuery>
-#include <QString>
-#include <QFile>
-#include <QDebug>
-#include <QVariantList>
-#include <QString>
 
 #include "DB/sqlitedb.hpp"
 
@@ -46,6 +30,7 @@ namespace App
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.constructor & destructor
+        MainWindow();
 
         /*
         *  @brief   释放链表开辟的内存空间

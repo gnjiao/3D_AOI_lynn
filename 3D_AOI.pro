@@ -13,10 +13,12 @@ SOURCES += main.cpp \
     Job/inspectiondata.cpp \
     Job/measuredobjlist.cpp \
     SDK/customexception.cpp \
-    App/app.cpp \
     DB/blob.cpp \
     DB/sqlitedb.cpp \
-    DB/sqlitedbtest.cpp
+    DB/sqlitedbtest.cpp \
+    App/mainwindow.cpp \
+    Job/measuredobj.cpp \
+    SDK/rectangle.cpp
 
 
 HEADERS += \
@@ -28,11 +30,12 @@ HEADERS += \
     Job/measuredobjlist.hpp \
     SDK/customexception.hpp \
     SDK/rectangle.hpp \
-    App/app.h \
     SDK/datahelper.hpp \
     DB/blob.hpp \
     DB/sqlitedb.hpp \
-    DB/sqlitedbtest.hpp
+    DB/sqlitedbtest.hpp \
+    App/mainwindow.hpp \
+    Job/measuredobj.hpp
 
 
 DISTFILES +=

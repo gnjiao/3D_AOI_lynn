@@ -1,6 +1,14 @@
 #include "capturesetting.hpp"
 
+App::CaptureSetting::CaptureSetting()
+{
 
+}
+
+App::CaptureSetting::~CaptureSetting()
+{
+
+}
 
 void App::CaptureSetting::load(const QString &path)
 {

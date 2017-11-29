@@ -2,6 +2,16 @@
 
 using namespace Job;
 
+MeasuredObjList::MeasuredObjList()
+{
+
+}
+
+MeasuredObjList::~MeasuredObjList()
+{
+
+}
+
 void MeasuredObjList::pushHead(MeasuredObj* pNewMeasuredObj)
 {
     this->m_size++;                                     //元素个数加一
@@ -22,7 +32,7 @@ void MeasuredObjList::pushHead(MeasuredObj* pNewMeasuredObj)
 
 void MeasuredObjList::pushTail(MeasuredObj *pNewMeasuredObj)
 {
-    this->m_size++;                                     //元素个数加一
+    this->m_size++;    //元素个数加一
     MeasuredObj *pOldTail = this->m_pHeadMeasuredObj;
 
     if( nullptr != pOldTail ) {
@@ -50,13 +60,13 @@ void MeasuredObjList::pushTail(MeasuredObj *pNewMeasuredObj)
 
 void MeasuredObjList::pullHead()
 {
-    if (0 == this->m_size)                              //判断链表中是否存在元素
+    if (0 == this->m_size)      //判断链表中是否存在元素
     {
         std::cout << "链表无元素" << std::endl;
         return;
     }
 
-    this->m_size--;                                     //链表中元素个数减一
+    this->m_size--;             //链表中元素个数减一
     //记录旧的首个元素指针
     MeasuredObj *pOldHead = this->m_pHeadMeasuredObj;
 
@@ -71,13 +81,13 @@ void MeasuredObjList::pullHead()
 
 void MeasuredObjList::pullTail()
 {
-    if (0 == this->m_size)                              //判断链表中是否存在元素
+    if (0 == this->m_size)      //判断链表中是否存在元素
     {
         std::cout << "链表无元素" << std::endl;
         return;
     }
 
-    this->m_size--;                                     //链表中元素个数减一
+    this->m_size--;             //链表中元素个数减一
 
     //获取原链表最后一个元素的指针
     MeasuredObj *pOldTail = this->m_pHeadMeasuredObj;
@@ -99,7 +109,7 @@ void MeasuredObjList::print()
 {
     MeasuredObj *pPrintingMeasuredObj = this->m_pHeadMeasuredObj;
 
-    for( int i = 0;i < this->m_size ; ++i )             //打印链表中的所有元素
+    for( int i = 0;i < this->m_size ; ++i ) //打印链表中的所有元素
     {
         std::cout << pPrintingMeasuredObj->name() << ":" << std::endl
               << "\tx坐标\t:"

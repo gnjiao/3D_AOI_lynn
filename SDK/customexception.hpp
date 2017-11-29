@@ -8,32 +8,28 @@
 #ifndef CUSTOMEXCEPTION_H
 #define CUSTOMEXCEPTION_H
 
-#include <exception>
-#include <string>
 #include <sstream>
 #include <iostream>
 
-
-/*
-*  @brief   追加异常信息并抛出异常
-*  @param   原来的异常信息
-*  @return  N/A
-*/
-#define THROW_EXCEPTION(exMsg)\
-{\
-    std::ostringstream message;\
-    message << "File:"<<__FILE__<<"\n"\
-            << "Line:"<<__LINE__<<"\n"\
-            << "Func:"<<__FUNCTION__<<"\n"\
-            << " " << "\n"\
-            << "Detail:"<<exMsg<<"\n";\
-    std::string msg = message.str();\
-    throw SDK::CustomException(msg);\
-}
-
-
 namespace SDK
 {
+    /*
+    *  @brief   追加异常信息并抛出异常
+    *  @param   原来的异常信息
+    *  @return  N/A
+    */
+    #define THROW_EXCEPTION(exMsg)\
+    {\
+        std::ostringstream message;\
+        message << "File:"<<__FILE__<<"\n"\
+                << "Line:"<<__LINE__<<"\n"\
+                << "Func:"<<__FUNCTION__<<"\n"\
+                << " " << "\n"\
+                << "Detail:"<<exMsg<<"\n";\
+        std::string msg = message.str();\
+        throw SDK::CustomException(msg);\
+    }
+
     /**
      *  @brief 自定义异常类
      *
@@ -54,6 +50,8 @@ namespace SDK
         */
         CustomException(std::string & message);
 
+        ~CustomException();
+
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //2.set & get function
 
@@ -70,9 +68,8 @@ namespace SDK
     private :
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //3.member function
-        std::string m_originalMsg;          //异常信息
+        std::string m_originalMsg;  //异常信息
     };
-
 }//End of namespace SDK
 
 #endif // CUSTOMEXCEPTION_H

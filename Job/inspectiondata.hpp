@@ -6,13 +6,14 @@
 #include <QDomDocument>
 #include <QXmlStreamWriter>
 #include <QTextStream>
-#include"board.hpp"
+
+#include "board.hpp"
 
 namespace Job
 {
     /**
-     *  @brief 检测数据类，存放一次检测程式的所有数据，能够将检测程式的所有信息（包括基板信息
-     *         和基板上所有元件信息）导出为xml格式文件
+     *  @brief 检测数据类，存放一次检测程式的所有数据，（包括程式版本号、最后一次修改时间，
+     *         基板信息和基板上所有元件信息），能够将程式的所有信息导出为xml格式文件
      *
      *  @author lynn
      *  @version 1.00 2017-11-29 lynn
@@ -21,6 +22,12 @@ namespace Job
     class InspectionData
     {
     public:
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //1.constructor & destructor
+        InspectionData();
+
+        ~InspectionData();
+
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.set & get function
         /*
@@ -36,7 +43,6 @@ namespace Job
         *  @return  检测程式的版本号
         */
         std::string version() { return this->m_version; }
-
         /*
         *  @brief   修改检测程式的版本号
         *  @param   要设置的版本号
@@ -50,7 +56,6 @@ namespace Job
         *  @return  检测程式的最后一次修改时间
         */
         std::string lastEditingTime() { return this->m_lastEditingTime; }
-
         /*
         *  @brief   修改检测程式的最后一次修改时间
         *  @param   要设置的检测程式最后一次修改时间

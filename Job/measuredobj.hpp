@@ -1,9 +1,7 @@
 #ifndef MEASUREDOBJ_H
 #define MEASUREDOBJ_H
 
-#include <string>
 #include <iostream>
-#include <random>
 
 #include "./SDK/rectangle.hpp"
 #include "./SDK/datahelper.hpp"
@@ -21,7 +19,13 @@ namespace Job {
     {
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //1.set & get function
+        //1.constructor & destructor
+        MeasuredObj();
+
+        ~MeasuredObj();
+
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //2.set & get function
 
         /*
         *  @brief   获取元件名称
@@ -29,7 +33,6 @@ namespace Job {
         *  @return  元件名陈
         */
         std::string name() { return this->m_name; }
-
         /*
         *  @brief   设置元件名陈
         *  @param   要设置的元件名称
@@ -50,7 +53,6 @@ namespace Job {
         *  @return  上一个元件的指针
         */
         Job::MeasuredObj* pPreMeasureObj() {return this->m_pPreMeasuredObj;}
-
         /*
         *  @brief   设置上一个元件的指针
         *  @param   要设置的上一个元件的指针
@@ -67,7 +69,6 @@ namespace Job {
         *  @return  下一个元件的指针
         */
         Job::MeasuredObj* pNextMeasuredObj(){return this->m_pNextMeasuredObj;}
-
         /*
         *  @brief   设置下一个元件的指针
         *  @param   要设置的下一个元件的指针
@@ -81,7 +82,7 @@ namespace Job {
     private:
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //2.member variant
+        //3.member variant
         std::string m_name;
         SDK::Rectangle m_body;
         Job::MeasuredObj* m_pPreMeasuredObj{nullptr};

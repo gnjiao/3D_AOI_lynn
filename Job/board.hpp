@@ -2,18 +2,16 @@
 #define BOARD_H
 
 #include <QFile>
-#include <QDoubleValidator>
 #include <QDomDocument>
-#include <QXmlStreamWriter>
 #include <QTextStream>
 
-#include"measuredobjlist.hpp"
+#include "measuredobjlist.hpp"
 
 namespace Job
 {
     /**
-     *  @brief 基板类，在成员变量中存储基板的基本信息，能够将基板中的信息（含基板中元件的信息）存
-     *         出为xml格式
+     *  @brief 基板类，在成员变量中存储基板的基本信息(包括基板的长宽、坐标、名字)，能够将基
+     *         板中的信息（含基板中元件的信息）存出为xml格式
      *  @author lynn
      *  @version 1.00 2017-11-29 lynn
      *                note:create it
@@ -22,7 +20,13 @@ namespace Job
     {
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
-        //1.set & get function
+        //1.constructor & destructor
+        Board();
+
+        ~Board();
+
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //2.set & get function
 
         /*
         *  @brief   获得基板的宽度
@@ -30,7 +34,6 @@ namespace Job
         *  @return  基板的宽度
         */
         double sizeX() { return this->m_sizeX; }
-
         /*
         *  @brief   修改基板的宽
         *  @param   要设置的基板宽度
@@ -44,7 +47,6 @@ namespace Job
         *  @return  基板的长度
         */
         double sizeY() { return this->m_sizeY; }
-
         /*
         *  @brief   修改基板的长度
         *  @param   要设置的基板长度
@@ -58,7 +60,6 @@ namespace Job
         *  @return  基板相对于机器原点的x坐标
         */
         double originalX() { return this->m_originalX; }
-
         /*
         *  @brief   修改基板相对于机器原点的x坐标
         *  @param   要设置的x坐标值
@@ -66,13 +67,12 @@ namespace Job
         */
         void setOriginalX(double originalX) { this->m_originalX = originalX; }
 
-        /*
+        /*{
         *  @brief   获得基板相对于机器原点的y坐标
         *  @param   N/A
         *  @return  基板相对于机器原点的y坐标
         */
         double originalY() { return this->m_originalY; }
-
         /*
         *  @brief   修改基板相对于机器原点的y坐标
         *  @param   要设置的y坐标值
@@ -86,7 +86,6 @@ namespace Job
         *  @return  基板的名称
         */
         std::string name() { return this->m_name; }
-
         /*
         *  @brief   修改基板的名称
         *  @param   要设置的基板的名称

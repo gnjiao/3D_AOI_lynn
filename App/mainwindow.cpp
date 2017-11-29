@@ -1,4 +1,10 @@
-#include "app.h"
+#include "mainwindow.hpp"
+
+App::MainWindow::MainWindow()
+{
+
+}
+
 
 App::MainWindow::~MainWindow()
 {
@@ -247,7 +253,7 @@ void App::MainWindow::createDefaultJob(std::string path)
         pPushingMeasuredObj->body().setHeight(RANDOM_NUM(minHeight,maxHeight));
         pPushingMeasuredObj->body().setWidth(RANDOM_NUM(minWidth,maxWidth));
 
-        pPushingMeasuredObj->setName(objName);            //给元件赋元件名
+        pPushingMeasuredObj->setName(objName);  //给元件赋元件名
 
         //将刚生成的元件加入列表
         this->m_inspectionData.board().measuredObjs().pushHead(pPushingMeasuredObj);
@@ -309,5 +315,3 @@ void App::MainWindow::writeToXml(std::string path)
 {
     this->m_inspectionData.writeToXml(path);
 }
-
-
