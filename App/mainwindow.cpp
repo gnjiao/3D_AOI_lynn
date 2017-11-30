@@ -1,5 +1,6 @@
 #include "mainwindow.hpp"
 
+
 App::MainWindow::MainWindow()
 {
 
@@ -47,8 +48,9 @@ void App::MainWindow::loadJobFolder()
     QDir dir(QString::fromStdString(this->m_appSetting.jobFolderPath()));
     if(!dir.exists())                   //判断程式路径是否存在
     {
+        QString filePath = dir.absolutePath();
         //判断程式目录是否创建成功
-        if( !dir.mkpath(QString::fromStdString(this->m_appSetting.jobFolderPath())) )
+        if( !dir.mkpath(filePath) )
         {
             THROW_EXCEPTION("程式路径不存在");
         }
@@ -230,8 +232,9 @@ void App::MainWindow::createDefaultJob(std::string path)
     time (&currentTime);
     this->inspectionData().setLastEditingTime(asctime(localtime (&currentTime)));
 
+    int MaxChipNameLen = 20;
     this->inspectionData().setVersion("V1");
-    char objName[10];
+    char objName[MaxChipNameLen];
     char namePrefixArr[][5]={"chip","ic"};
     int chipCnt = 20;
     int icCnt = 30;

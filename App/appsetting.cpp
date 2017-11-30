@@ -5,10 +5,12 @@ App::AppSetting::AppSetting()
 
 }
 
+
 App::AppSetting::~AppSetting()
 {
 
 }
+
 
 void App::AppSetting::load(const QString &path)
 {

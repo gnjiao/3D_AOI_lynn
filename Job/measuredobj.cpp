@@ -5,6 +5,7 @@ Job::MeasuredObj::MeasuredObj()
 
 }
 
+
 Job::MeasuredObj::~MeasuredObj()
 {
 

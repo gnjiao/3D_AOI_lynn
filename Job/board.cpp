@@ -7,10 +7,12 @@ Board::Board()
 
 }
 
+
 Board::~Board()
 {
 
 }
+
 
 void Board::writeToXml(std::string path)
 {

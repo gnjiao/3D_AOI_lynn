@@ -5,10 +5,12 @@ Job::InspectionData::InspectionData()
 
 }
 
+
 Job::InspectionData::~InspectionData()
 {
 
 }
+
 
 void Job::InspectionData::writeToXml(std::string path)
 {

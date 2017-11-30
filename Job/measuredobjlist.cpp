@@ -7,10 +7,12 @@ MeasuredObjList::MeasuredObjList()
 
 }
 
+
 MeasuredObjList::~MeasuredObjList()
 {
 
 }
+
 
 void MeasuredObjList::pushHead(MeasuredObj* pNewMeasuredObj)
 {
