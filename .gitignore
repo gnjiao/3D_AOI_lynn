@@ -1,3 +1,8 @@
+#custom
+debug/
+./3D_AOI.pro.user
+*.init
+
 # Prerequisites
 *.d
 
