@@ -8,6 +8,7 @@
 #include <QTextStream>
 
 #include "board.hpp"
+#include "../SDK/customexception.hpp"
 
 namespace Job
 {
@@ -24,8 +25,19 @@ namespace Job
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.constructor & destructor
+
+        /*
+        *  @brief   类的构造函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         InspectionData();
 
+        /*
+        *  @brief   类的析构函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         ~InspectionData();
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
@@ -80,8 +92,8 @@ namespace Job
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //3.member function
         Job::Board m_board;
-        std::string m_version;
-        std::string m_lastEditingTime;
+        std::string m_version{"\0"};
+        std::string m_lastEditingTime{"\0"};
     };
 
 }//End of namespace Job

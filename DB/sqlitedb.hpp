@@ -731,7 +731,7 @@
                     this->m_pstatement,
                     current,
                     t,
-                    strlen(t)+1,
+                    strlen(t),
                     SQLITE_TRANSIENT);
     }
 

@@ -26,8 +26,19 @@ namespace App
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.constructor & destructor
+
+        /*
+        *  @brief   类的构造函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         AppSetting();
 
+        /*
+        *  @brief   类的析构函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         ~AppSetting();
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
@@ -53,12 +64,12 @@ namespace App
     private:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //4.member variant
-        THEME m_theme;
-        LANG m_lang;
-        LANEMODE m_laneMode;
-        MACHINETYPE m_machineType;
-        std::string m_companyName;
-        std::string m_jobFolderPath;
+        THEME m_theme{THEME::BLACK};
+        LANG m_lang{LANG::CN};
+        LANEMODE m_laneMode{LANEMODE::SIMULATOR};
+        MACHINETYPE m_machineType{MACHINETYPE::SPI};
+        std::string m_companyName{"\0"};
+        std::string m_jobFolderPath{"\0"};
     };
 
 }//End of namespace App

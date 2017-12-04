@@ -50,6 +50,11 @@ namespace SDK
         */
         CustomException(std::string & message);
 
+        /*
+        *  @brief   类的析构函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         ~CustomException();
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
@@ -68,7 +73,7 @@ namespace SDK
     private :
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //3.member function
-        std::string m_originalMsg;  //异常信息
+        std::string m_originalMsg{"\0"};  //异常信息
     };
 }//End of namespace SDK
 

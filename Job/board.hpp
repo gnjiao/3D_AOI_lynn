@@ -6,6 +6,7 @@
 #include <QTextStream>
 
 #include "measuredobjlist.hpp"
+#include "../SDK/customexception.hpp"
 
 namespace Job
 {
@@ -21,8 +22,19 @@ namespace Job
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.constructor & destructor
+
+        /*
+        *  @brief   类的构造函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         Board();
 
+        /*
+        *  @brief   类的析构函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         ~Board();
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
@@ -94,6 +106,13 @@ namespace Job
         void setName(std::string name) { this->m_name = name; }
 
         /*
+        *  @brief   设置版本号
+        *  @param   要设置的版本号
+        *  @return  N/A
+        */
+        void setVersion(std::string version) { this->m_version = version; }
+
+        /*
         *  @brief   获取基板中所有元件的信息
         *  @param   N/A
         *  @return  基板中所有元件的信息
@@ -114,11 +133,12 @@ namespace Job
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //3.member variant
         Job::MeasuredObjList m_measuredObjs;
-        std::string m_name;
-        double m_sizeX;                 //基板宽度
-        double m_sizeY;                 //基板长度
-        double m_originalX;             //基板相对于机器原点的x坐标
-        double m_originalY;             //基板相对于机器原点的y坐标
+        std::string m_name{"\0"};
+        std::string m_version{"\0"};        //版本号
+        double m_sizeX{0};                  //基板宽度
+        double m_sizeY{0};                  //基板长度
+        double m_originalX{0};              //基板相对于机器原点的x坐标
+        double m_originalY{0};              //基板相对于机器原点的y坐标
     };
 
 }//End of namespace Job

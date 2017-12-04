@@ -30,10 +30,16 @@ namespace App
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.constructor & destructor
+
+        /*
+        *  @brief   类的构造函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         MainWindow();
 
         /*
-        *  @brief   释放链表开辟的内存空间
+        *  @brief   释放存放程式数据用的内存空间
         *  @param   N/A
         *  @return  N/A
         */
@@ -82,11 +88,18 @@ namespace App
         void loadInspectionData(std::string path);
 
         /*
-        *  @brief   创建默认的检测程式（数据为随机生成）
+        *  @brief   根据内存中的数据创建检测程式，若程式为V1版本则自动转换为V2版本
         *  @param   创建程式的路径
         *  @return  N/A
         */
-        void createDefaultJob(std::string path);
+        void createJob(std::string path);
+
+        /*
+        *  @brief   生成程式中的数据(数据为随机生成)
+        *  @param   N/A
+        *  @return  N/A
+        */
+        void generateJobData();
 
         /*
         *  @brief   将程式数据导出为xml文件
