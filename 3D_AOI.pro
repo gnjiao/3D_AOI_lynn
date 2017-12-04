@@ -6,36 +6,36 @@ QT += xml
 QT += core
 QT += sql
 
-SOURCES += main.cpp \
-    App/appsetting.cpp \
-    App/capturesetting.cpp \
-    Job/board.cpp \
-    Job/inspectiondata.cpp \
-    Job/measuredobjlist.cpp \
-    SDK/customexception.cpp \
+SOURCES += \ 
     DB/blob.cpp \
     DB/sqlitedb.cpp \
     DB/sqlitedbtest.cpp \
-    App/mainwindow.cpp \
-    Job/measuredobj.cpp \
-    SDK/rectangle.cpp
+    src/App/appsetting.cpp \
+    src/App/capturesetting.cpp \
+    src/App/mainwindow.cpp \
+    src/Job/board.cpp \
+    src/Job/inspectiondata.cpp \
+    src/Job/measuredobj.cpp \
+    src/Job/measuredobjlist.cpp \
+    src/SDK/customexception.cpp \
+    src/SDK/rectangle.cpp \
+    src/main.cpp
 
 
-HEADERS += \
-    App/appsetting.hpp \
-    App/capturesetting.hpp \
-    Job/board.hpp \
-    Job/inspectiondata.hpp \
-    Job/measuredobj.hpp \
-    Job/measuredobjlist.hpp \
-    SDK/customexception.hpp \
-    SDK/rectangle.hpp \
-    SDK/datahelper.hpp \
+HEADERS += \ 
     DB/blob.hpp \
     DB/sqlitedb.hpp \
     DB/sqlitedbtest.hpp \
-    App/mainwindow.hpp \
-    Job/measuredobj.hpp
+    src/App/appsetting.hpp \
+    src/App/capturesetting.hpp \
+    src/App/mainwindow.hpp \
+    src/Job/board.hpp \
+    src/Job/inspectiondata.hpp \
+    src/Job/measuredobj.hpp \
+    src/Job/measuredobjlist.hpp \
+    src/SDK/customexception.hpp \
+    src/SDK/datahelper.hpp \
+    src/SDK/rectangle.hpp
 
 
 DISTFILES +=

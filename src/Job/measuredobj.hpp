@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "./SDK/rectangle.hpp"
-#include "./SDK/datahelper.hpp"
+#include "../SDK/rectangle.hpp"
+#include "../SDK/datahelper.hpp"
 
 namespace Job
 {

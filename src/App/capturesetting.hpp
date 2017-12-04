@@ -4,7 +4,7 @@
 #include <QSettings>
 #include <QFile>
 
-#include "./SDK/customexception.hpp"
+#include "../SDK/customexception.hpp"
 
 namespace App
 {

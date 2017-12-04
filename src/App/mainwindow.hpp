@@ -9,8 +9,8 @@
 #include "appsetting.hpp"
 #include "capturesetting.hpp"
 #include "../Job/inspectiondata.hpp"
-#include "./SDK/datahelper.hpp"
-#include "./SDK/customexception.hpp"
+#include "../SDK/datahelper.hpp"
+#include "../SDK/customexception.hpp"
 
 namespace App
 {
