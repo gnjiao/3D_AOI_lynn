@@ -14,8 +14,8 @@
 Theme使用枚举: Black/White\
 Lang使用枚举: CN/EN\
 LaneMode: Simulator/SingleLane/DualLane\
-MachineName改为枚举->MachineType: 目前有SPI/3DAOI\
-CompanyName使用字符床，如“Sciject”“Sung"\
+MachineName使用枚举->MachineType: 有SPI/3DAOI\
+CompanyName使用字符串，如“Sciject”“Sung"\
 JobFolderPath:记录job的目录路径
 ### 2.CaptureSetting.ini
 
@@ -29,8 +29,8 @@ ImgBits： 支持8位和16位
 上次程式的编辑时间\
 板子的名称，大小和原点\
 所有的measuredObj的名称，坐标位置，大小，角度信息\
-程式放在程序根目录的data目录下面
+程式放在JobFolderPath指定目录下面
 
 
 # Change Log
-给measuredObj加入了角度属性，读V1程式的时候考虑到兼容问题自动将V1程式转换为V2程式。
+升级主要是给measuredObj加入了角度属性，读V1程式的时候考虑到兼容问题，自动将V1程式转换为V2程式。
