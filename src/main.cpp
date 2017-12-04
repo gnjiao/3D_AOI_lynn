@@ -18,8 +18,8 @@ int main()
    try
    {
        //配置文件的路径：
-       QString appSettingPath = "./init/appSetting.init";
-       QString captureSettingPath = "./init/captureSetting.init";
+       QString appSettingPath = "./ini/appSetting.ini";
+       QString captureSettingPath = "./ini/captureSetting.ini";
        App::MainWindow mainWindow;
 
        //>>>-------------------------------------------------------------------------------------------------------------------------------------
