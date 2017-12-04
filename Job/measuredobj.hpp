@@ -6,8 +6,8 @@
 #include "./SDK/rectangle.hpp"
 #include "./SDK/datahelper.hpp"
 
-namespace Job {
-
+namespace Job
+{
     /**
      *  @brief  该类表示一个检测过的元件。(具有双向链表中元素的特性，可以通过成员指针变量记
      *          录上一个元件和下一个元件,若指向nullptr则表示为没有上一个/下一个元件。)
@@ -20,8 +20,19 @@ namespace Job {
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.constructor & destructor
+
+        /*
+        *  @brief   类的构造函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         MeasuredObj();
 
+        /*
+        *  @brief   类的析构函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         ~MeasuredObj();
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
@@ -83,7 +94,7 @@ namespace Job {
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //3.member variant
-        std::string m_name;
+        std::string m_name{"\0"};
         SDK::Rectangle m_body;
         Job::MeasuredObj* m_pPreMeasuredObj{nullptr};
         Job::MeasuredObj* m_pNextMeasuredObj{nullptr};

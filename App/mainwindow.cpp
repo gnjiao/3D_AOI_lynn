@@ -13,7 +13,8 @@ App::MainWindow::~MainWindow()
     Job::MeasuredObj *pHead = this->m_inspectionData.board().measuredObjs().pHeadMeasuredObj();
 
     //循环释放整个链表中的元素空间
-    while ( nullptr != pHead) {
+    while ( nullptr != pHead)
+    {
         this->m_inspectionData.board().measuredObjs().pullHead();
         delete pHead;
         pHead = this->m_inspectionData.board().measuredObjs().pHeadMeasuredObj();
@@ -57,7 +58,7 @@ void App::MainWindow::loadJobFolder()
     }
 
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
-    //2.遍历程式目录，找出缀不为.xml的文件
+    //2.遍历程式目录，找出后缀不为.xml的文件
     QStringList filters;
     filters << "*[^xml]";
     dir.setNameFilters(filters);        //设置寻找文件的过滤条件
@@ -65,18 +66,26 @@ void App::MainWindow::loadJobFolder()
     QFileInfoList fileList = dir.entryInfoList();
     QFileInfo fileInfo;
 
-    for (int i = 0; i < fileList.size(); ++i) {
+    for (int i = 0; i < fileList.size(); ++i)
+    {
         fileInfo = fileList.at(i);
         std::cout<< i << ":\t" << fileInfo.fileName().toStdString() <<std::endl;
     }
 
     //>>>-------------------------------------------------------------------------------------------------------------------------------------
     //3.若无程式文件，创建默认程式并导出xml文件
+    std::string version = "V2";
     std::string xmlSuffix = ".xml";
+    this->m_inspectionData.board().setVersion(version);
     if(fileList.empty())//若没有程式，生成默认程式
     {
         std::string defaultJobName = "XiaoMi";
-        this->createDefaultJob(this->m_appSetting.jobFolderPath() + defaultJobName);
+        this->generateJobData();    //生成程式数据
+
+        //生成程式文件
+        this->createJob(this->m_appSetting.jobFolderPath() + defaultJobName);
+
+        //将程式中的所有数据导出为xml格式文件
         this->writeToXml( this->m_appSetting.jobFolderPath() +\
                           defaultJobName + xmlSuffix );
     }
@@ -98,8 +107,8 @@ void App::MainWindow::loadJobFolder()
                 fileInfo = fileList.at(selectJobIdx);
 
                 //加载用户选择的程式文件：
-                loadInspectionData( this->m_appSetting.jobFolderPath() + \
-                                    fileInfo.fileName().toStdString());
+                this->loadInspectionData( this->m_appSetting.jobFolderPath() + \
+                                        fileInfo.fileName().toStdString());
 
                 //将程式数据导出为xml文件
                 this->writeToXml( this->m_appSetting.jobFolderPath() +\
@@ -113,7 +122,7 @@ void App::MainWindow::loadJobFolder()
 
                 //清空cin缓冲区：
                 std::cin.clear();
-                std::cin.ignore();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
         }   //end of while(true)
     }
@@ -134,10 +143,6 @@ void App::MainWindow::loadInspectionData(std::string path)
             std::string selectedString = "select version from Job";
             sqlite.prepare(selectedString);
             this->m_inspectionData.setVersion(sqlite.executeScalar<std::string>(selectedString));
-            if(this->m_inspectionData.version() !="V1")
-            {
-                THROW_EXCEPTION("检测程式版本过高");
-            }
 
             //读取最后修改时间
             selectedString = "select lastEditTime from Job";
@@ -154,9 +159,7 @@ void App::MainWindow::loadInspectionData(std::string path)
             {
                 sqlite.step();
                 if (sqlite.latestErrorCode() == SQLITE_DONE)
-                {
                     break;
-                }
 
                 this->m_inspectionData.board().setName(boost::get<std::string>(sqlite.columnValue(0)));
                 this->m_inspectionData.board().setSizeX(boost::get<double>(sqlite.columnValue(1)));
@@ -171,15 +174,14 @@ void App::MainWindow::loadInspectionData(std::string path)
             sqlite.prepare(selectedString);
             sqlite.begin();
 
-            Job::MeasuredObj *pQueryingObj;
+            Job::MeasuredObj *pQueryingObj;    //正在读取的元件信息
 
             while(true)
             {
                 sqlite.step();
                 if (sqlite.latestErrorCode() == SQLITE_DONE)
-                {
                     break;
-                }
+
                 pQueryingObj = new Job::MeasuredObj;
                 pQueryingObj->setName(boost::get<std::string>(sqlite.columnValue(0)));
                 pQueryingObj->body().setWidth(boost::get<double>(sqlite.columnValue(1)));
@@ -191,7 +193,18 @@ void App::MainWindow::loadInspectionData(std::string path)
 
             sqlite.reset();
             sqlite.close();
+
+            //>>>-------------------------------------------------------------------------------------------------------------------------------------
+            //4.判断程式版本，若版本为V1则将其改为V2版本程式
+            if(this->m_inspectionData.version() =="V1")
+            {
+                this->createJob(path);
+            }
         } //end of if(isopen)
+        else
+        {
+            THROW_EXCEPTION("程式文件打开错误")
+        }
     } //end of try
     catch(const SDK::CustomException& ex)
     {
@@ -205,12 +218,101 @@ void App::MainWindow::loadInspectionData(std::string path)
 }
 
 
-void App::MainWindow::createDefaultJob(std::string path)
+void App::MainWindow::createJob(std::string path)
 {
-    //>>>-------------------------------------------------------------------------------------------------------------------------------------
-    //1.生成默认程式（数据为随机生成）
+    try
+    {
+        SSDK::DB::SqliteDB v2Sqlite;
+        if(!v2Sqlite.open(path))        //打开程式文件
+        {
+            THROW_EXCEPTION("程式文件创建是出错");
+        }
 
-    //随机生成的数据的上下限
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //1.判断版本是否为V1,若是,则删除原有的表
+        if(this->inspectionData().version() == "V1")
+        {
+            //删除原来的Jod表
+            std::string deleteSql = "DROP TABLE Job";
+            v2Sqlite.execute(deleteSql);
+
+            //删除原来的Board表
+            deleteSql = "DROP TABLE Board";
+            v2Sqlite.execute(deleteSql);
+
+            //删除原来的MeasuredObjs表
+            deleteSql = "DROP TABLE MeasuredObjs";
+            v2Sqlite.execute(deleteSql);
+        }
+
+        //>>>-------------------------------------------------------------------------------------------------------------------------------------
+        //2.创建job表
+        std::string version = "V2";
+        this->inspectionData().setVersion(version);     //将版本号设置为V2
+
+        std::string sqlcreate = "create table Job ( version varchar(5), lastEditTime varchar(30) )";
+        v2Sqlite.execute(sqlcreate);
+
+        std::string sqlInsert = "insert into Job(version,lastEditTime) values(?,?)";
+        v2Sqlite.execute(sqlInsert,this->m_inspectionData.version(), this->m_inspectionData.lastEditingTime());
+
+
+        //>>>----------------------------------------------------------------------------------------------------------
+        //3.创建board表
+        //新建表
+        sqlcreate = "create table Board (name varchar(20),sizeX REAL,sizeY REAL,originalX REAL,originalY REAL)";
+        v2Sqlite.execute(sqlcreate);
+
+        //插入数据
+        sqlInsert = "insert into Board(name,sizeX,sizeY,originalX,originalY) values(?,?,?,?,?)";
+
+        v2Sqlite.execute(sqlInsert, this->m_inspectionData.board().name(),\
+                         this->m_inspectionData.board().sizeX(), \
+                         this->m_inspectionData.board().sizeY(),\
+                         this->m_inspectionData.board().originalX(),\
+                         this->m_inspectionData.board().originalY());
+
+
+        //>>>----------------------------------------------------------------------------------------------------------
+        //4.创建MeasuredObjs表
+        //新建表
+        sqlcreate = "create table MeasuredObjs (name varchar(20),width REAL,height REAL,xPos REAL,yPos REAL,angle REAL)";
+        v2Sqlite.execute(sqlcreate);
+
+        //插入数据
+        sqlInsert = "insert into MeasuredObjs(name,width,height,xPos,yPos,angle) values(?,?,?,?,?,?)";
+        Job::MeasuredObj* pListHead = this->m_inspectionData.board().measuredObjs().pHeadMeasuredObj();
+
+        v2Sqlite.prepare(sqlInsert);
+        v2Sqlite.begin();
+
+        while (nullptr != pListHead)    //循环插入所有元件的数据
+        {
+            v2Sqlite.executeWithParms(pListHead->name().data(),\
+                             pListHead->body().width(),\
+                             pListHead->body().height(),\
+                             pListHead->body().xPos(),\
+                             pListHead->body().yPos(),
+                             pListHead->body().angle());
+            pListHead = pListHead->pNextMeasuredObj();
+        }
+        v2Sqlite.commit();
+
+        v2Sqlite.close();
+    }
+    catch(const SDK::CustomException& ex)
+    {
+        //加上这一层的异常信息，异常上抛
+        THROW_EXCEPTION(ex.what());
+    }
+}
+
+
+void App::MainWindow::generateJobData()
+{
+    //随机生成的数据的上下限：
+    double minAngle = 0.00;
+    double maxAngle = 360.00;
     double maxHeight = 150.00;
     double minHeight = 0.01;
     double maxWidth = 150.0;
@@ -219,8 +321,10 @@ void App::MainWindow::createDefaultJob(std::string path)
     double minX = 0.00;
     double maxY = 100.00;
     double minY = 0.00;
-
     srand(time(0));
+
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //1.生成Board信息：
     std::string defaultBoardName = "Mi";
     this->inspectionData().board().setName(defaultBoardName);
     this->inspectionData().board().setSizeX(RANDOM_NUM(minWidth,maxWidth));
@@ -228,17 +332,22 @@ void App::MainWindow::createDefaultJob(std::string path)
     this->inspectionData().board().setOriginalX(RANDOM_NUM(minX,maxX));
     this->inspectionData().board().setOriginalY(RANDOM_NUM(minY,maxY));
 
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //2.生成Job信息：
+    //获取当前时间作为最后修改程式时间：
     time_t currentTime;
     time (&currentTime);
     this->inspectionData().setLastEditingTime(asctime(localtime (&currentTime)));
 
-    int MaxChipNameLen = 20;
-    this->inspectionData().setVersion("V1");
+    //>>>-------------------------------------------------------------------------------------------------------------------------------------
+    //3.生成元件信息：
+    int MaxChipNameLen = 20;                    //元件名最大长度
     char objName[MaxChipNameLen];
     char namePrefixArr[][5]={"chip","ic"};
     int chipCnt = 20;
     int icCnt = 30;
-    Job::MeasuredObj* pPushingMeasuredObj;
+    Job::MeasuredObj* pPushingMeasuredObj;      //即将放到链表中的元件指针
+
     for ( int i = 1; i <= chipCnt + icCnt; ++i)
     {
         //生成元件名：
@@ -246,7 +355,7 @@ void App::MainWindow::createDefaultJob(std::string path)
             std::sprintf(objName,"%s%02d",namePrefixArr[1],i);
         }
         else {
-            std::sprintf(objName,"%s%02d",namePrefixArr[0],i - 30);
+            std::sprintf(objName,"%s%02d",namePrefixArr[0],i - icCnt);
         }
 
         //生成要push到元件（元件数据为随机生成）
@@ -255,62 +364,13 @@ void App::MainWindow::createDefaultJob(std::string path)
         pPushingMeasuredObj->body().setYPos(RANDOM_NUM(minY,maxY));
         pPushingMeasuredObj->body().setHeight(RANDOM_NUM(minHeight,maxHeight));
         pPushingMeasuredObj->body().setWidth(RANDOM_NUM(minWidth,maxWidth));
+        pPushingMeasuredObj->body().setAngle(RANDOM_NUM(minAngle,maxAngle));
 
         pPushingMeasuredObj->setName(objName);  //给元件赋元件名
 
         //将刚生成的元件加入列表
         this->m_inspectionData.board().measuredObjs().pushHead(pPushingMeasuredObj);
     }
-
-    //>>>-------------------------------------------------------------------------------------------------------------------------------------
-    //2.创建job表
-    SSDK::DB::SqliteDB v2Sqlite;
-    v2Sqlite.open(path);
-
-    std::string sqlcreate = "create table Job ( version varchar(5), lastEditTime varchar(30) )";
-    v2Sqlite.execute(sqlcreate);
-
-    std::string sqlInsert = "insert into Job(version,lastEditTime) values(?,?)";
-    v2Sqlite.execute(sqlInsert,this->m_inspectionData.version(), this->m_inspectionData.lastEditingTime());
-
-
-    //>>>----------------------------------------------------------------------------------------------------------
-    //3.创建board表
-    //新建表
-    sqlcreate = "create table Board (name varchar(20),sizeX REAL,sizeY REAL,originalX REAL,originalY REAL)";
-    v2Sqlite.execute(sqlcreate);
-
-    //插入数据
-    sqlInsert = "insert into Board(name,sizeX,sizeY,originalX,originalY) values(?,?,?,?,?)";
-
-    v2Sqlite.execute(sqlInsert, this->m_inspectionData.board().name(),\
-                     this->m_inspectionData.board().sizeX(), \
-                     this->m_inspectionData.board().sizeY(),\
-                     this->m_inspectionData.board().originalX(),\
-                     this->m_inspectionData.board().originalY());
-
-
-    //>>>----------------------------------------------------------------------------------------------------------
-    //4.创建MeasuredObjs表
-    //新建表
-    sqlcreate = "create table MeasuredObjs (name varchar(20),width REAL,height REAL,xPos REAL,yPos REAL)";
-    v2Sqlite.execute(sqlcreate);
-
-    //插入数据
-    sqlInsert = "insert into MeasuredObjs(name,width,height,xPos,yPos) values(?,?,?,?,?)";
-    Job::MeasuredObj* pListHead = this->m_inspectionData.board().measuredObjs().pHeadMeasuredObj();
-
-    while (nullptr != pListHead)
-    {
-        v2Sqlite.execute(sqlInsert,pListHead->name(),\
-                         pListHead->body().width(),\
-                         pListHead->body().height(),\
-                         pListHead->body().xPos(),\
-                         pListHead->body().yPos());
-        pListHead = pListHead->pNextMeasuredObj();
-    }
-
-    v2Sqlite.close();
 }
 
 

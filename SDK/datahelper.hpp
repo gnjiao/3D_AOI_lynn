@@ -1,7 +1,8 @@
 #ifndef DATAHELPER_H
 #define DATAHELPER_H
 
-namespace SDK {
+namespace SDK
+{
     /*
     *  @brief   生成一个精度为0.01的随机数
     *  @param   lowerLimit为随机数的下限

@@ -37,7 +37,8 @@ void MeasuredObjList::pushTail(MeasuredObj *pNewMeasuredObj)
     this->m_size++;    //元素个数加一
     MeasuredObj *pOldTail = this->m_pHeadMeasuredObj;
 
-    if( nullptr != pOldTail ) {
+    if( nullptr != pOldTail )
+    {
         //将原来的尾元素的后一个元素指针指向新元素
         pOldTail->setPNextMeasuredObj( pNewMeasuredObj );
 
@@ -47,7 +48,8 @@ void MeasuredObjList::pushTail(MeasuredObj *pNewMeasuredObj)
             pOldTail = (*pOldTail).pNextMeasuredObj();
         }
     }
-    else {
+    else
+    {
         this->m_pHeadMeasuredObj = pNewMeasuredObj;
     }
 
@@ -121,7 +123,9 @@ void MeasuredObjList::print()
               << "\t宽度\t:"
               << ((*pPrintingMeasuredObj).body()).width() << std::endl
               << "\t高度\t:"
-              << ((*pPrintingMeasuredObj).body()).height() << std::endl;
+              << ((*pPrintingMeasuredObj).body()).height() << std::endl
+              << "\t角度\t:"
+              << pPrintingMeasuredObj->body().angle() <<std::endl;
 
         //将待打印元素指针指向链表中的下一个元素
         pPrintingMeasuredObj = pPrintingMeasuredObj->pNextMeasuredObj();

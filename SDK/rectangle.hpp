@@ -1,9 +1,8 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-namespace SDK {
-
-
+namespace SDK
+{
     /**
      *  @brief  表示矩形框，一般矩形框的基本属性
      *  @author lynn
@@ -15,8 +14,19 @@ namespace SDK {
     public:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //1.constructor & destructor
+
+        /*
+        *  @brief   类的构造函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         Rectangle();
 
+        /*
+        *  @brief   类的析构函数，占无内容
+        *  @param   N/A
+        *  @return  N/A
+        */
         ~Rectangle();
 
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
@@ -33,13 +43,17 @@ namespace SDK {
         double height() { return this->m_height; }
         void setHeight(double height) { this->m_height = height; }
 
+        double angle() { return this->m_angle; }
+        void setAngle(double angle) { this->m_angle = angle; }
+
     private:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //3.member function
-        double m_xPos;         //矩形在x坐标上的位置
-        double m_yPos;         //矩形在y坐标上的位置
-        double m_width;        //矩形的宽度
-        double m_height;       //矩形的高度
+        double m_xPos{0};         //矩形在x坐标上的位置
+        double m_yPos{0};         //矩形在y坐标上的位置
+        double m_width{0};        //矩形的宽度
+        double m_height{0};       //矩形的高度
+        double m_angle{0};        //矩形的旋转角度
     };
 
 }

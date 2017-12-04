@@ -10,6 +10,7 @@
 #include "./App/capturesetting.hpp"
 #include "./App/mainwindow.hpp"
 
+#define VERSION "V2"
 using namespace std;
 
 int main()
@@ -19,10 +20,10 @@ int main()
        //配置文件的路径：
        QString appSettingPath = "./init/appSetting.init";
        QString captureSettingPath = "./init/captureSetting.init";
+       App::MainWindow mainWindow;
 
        //>>>-------------------------------------------------------------------------------------------------------------------------------------
        //1.加载配置文件
-       App::MainWindow mainWindow;
        mainWindow.loadAppSetting(appSettingPath);
        mainWindow.loadCaptureSetting(captureSettingPath);
 
