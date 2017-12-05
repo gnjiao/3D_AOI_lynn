@@ -8,10 +8,10 @@
 
 namespace App
 {
-    enum class THEME { BLACK , WHITE };
-    enum class LANG { CN , EN };
-    enum class LANEMODE { SIMULATOR , SINGLE_LANE , DUAL_LANE };
-    enum class MACHINETYPE { SPI , AOI3D };
+    enum class Theme { BLACK , WHITE };
+    enum class Lang { CN , EN };
+    enum class LaneMode { SIMULATOR , SINGLE_LANE , DUAL_LANE };
+    enum class MachineType { SPI , AOI3D };
 
     /**
      *  @brief  app配置文件类，存放app配置文件中的信息，有读配置文件的功能：
@@ -64,10 +64,10 @@ namespace App
     private:
         //>>>-------------------------------------------------------------------------------------------------------------------------------------
         //4.member variant
-        THEME m_theme{THEME::BLACK};
-        LANG m_lang{LANG::CN};
-        LANEMODE m_laneMode{LANEMODE::SIMULATOR};
-        MACHINETYPE m_machineType{MACHINETYPE::SPI};
+        Theme m_theme{Theme::BLACK};
+        Lang m_lang{Lang::CN};
+        LaneMode m_laneMode{LaneMode::SIMULATOR};
+        MachineType m_machineType{MachineType::SPI};
         std::string m_companyName{"\0"};
         std::string m_jobFolderPath{"\0"};
     };

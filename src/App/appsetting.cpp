@@ -36,9 +36,9 @@ void App::AppSetting::load(const QString &path)
         configFile.setValue("CompanyName",defaultCompanyName);
         configFile.setValue("JobFolderPath",defaultJobFolderPath);
 
-        this->m_lang = LANG::CN;
-        this->m_laneMode = LANEMODE::SIMULATOR;
-        this->m_machineType = MACHINETYPE::SPI;
+        this->m_lang = Lang::CN;
+        this->m_laneMode = LaneMode::SIMULATOR;
+        this->m_machineType = MachineType::SPI;
         this->m_companyName = defaultCompanyName.toStdString();
         this->m_jobFolderPath = defaultJobFolderPath.toStdString();
 
@@ -54,61 +54,61 @@ void App::AppSetting::load(const QString &path)
         //2.1.读取Theme, 如果不正确的话就写入默认值
         QString theme =  configFile.value("Theme").toString();
         if( theme == "Black" ) {
-            this->m_theme = THEME::BLACK;
+            this->m_theme = Theme::BLACK;
         }
         else if (theme == "White") {
-            this->m_theme = THEME::WHITE;
+            this->m_theme = Theme::WHITE;
         }
         else {
             std::cout << "读取Theme失败,设置为默认值Black"<< std::endl;
             configFile.setValue("Theme", defaultTheme);
-            this->m_theme = THEME::BLACK;
+            this->m_theme = Theme::BLACK;
         }
 
         //2.2.读取Lang,如果不正确的话就写入默认值
         QString lang =  configFile.value("Lang").toString();
         if(lang == "CN") {
-            this->m_lang = LANG::CN;
+            this->m_lang = Lang::CN;
         }
         else if (lang == "EN") {
-            this->m_lang = LANG::EN;
+            this->m_lang = Lang::EN;
         }
         else
         {
             std::cout << "读取Lang失败,默认设置为CN"<< std::endl;
             configFile.setValue("Lang", defaultLang);
-            this->m_lang = LANG::CN;
+            this->m_lang = Lang::CN;
         }
 
         //2.3.读取LaneMode，如果不正确就写如默认值
         QString laneMode =  configFile.value("LaneMode").toString();
         if(laneMode == "Simulator") {
-            this->m_laneMode = LANEMODE::SIMULATOR;
+            this->m_laneMode = LaneMode::SIMULATOR;
         }
         else if (laneMode == "DualLane") {
-            this->m_laneMode = LANEMODE::DUAL_LANE;
+            this->m_laneMode = LaneMode::DUAL_LANE;
         }
         else if (laneMode == "SingleLane") {
-            this->m_laneMode = LANEMODE::SINGLE_LANE;
+            this->m_laneMode = LaneMode::SINGLE_LANE;
         }
         else {
             std::cout << "读取LaneMode失败,默认设置为Simulator"<< std::endl;
             configFile.setValue("LaneMode", defaultLang);
-            this->m_laneMode = LANEMODE::SIMULATOR;
+            this->m_laneMode = LaneMode::SIMULATOR;
         }
 
         //2.4.读取MachineType,如果不正确就写入默认值
         QString machineType = configFile.value("MachineType").toString();
         if (machineType == "SPI") {
-            this->m_machineType = MACHINETYPE::SPI;
+            this->m_machineType = MachineType::SPI;
         }
         else if (machineType == "AOI3D") {
-            this->m_machineType = MACHINETYPE::AOI3D;
+            this->m_machineType = MachineType::AOI3D;
         }
         else {
             std::cout << "读取MachinType失败,默认设置为SPI"<< std::endl;
             configFile.setValue("MachineType", defaultMachineType);
-            this->m_machineType = MACHINETYPE::SPI;
+            this->m_machineType = MachineType::SPI;
         }
 
         //2.5.读取CompanyName,若不存在设置为默认值
