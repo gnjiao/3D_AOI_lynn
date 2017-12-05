@@ -56,11 +56,11 @@ void App::CaptureSetting::load(const QString &path)
             int imgBits =  configFile.value("ImgBits").toInt();
             if( imgBits == 8 )
             {
-                this->m_imgBits = IMGBITS::BIT8;
+                this->m_imgBits = ImgBits::BIT_8;
             }
             else if ( imgBits == 16 )
             {
-                this->m_imgBits = IMGBITS::BIT16;
+                this->m_imgBits = ImgBits::BIT_16;
             }
             else
             {
